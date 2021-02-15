@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Twitter Sentiments</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='res_style.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+        <script defer src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="sentiment">
+            <h1>Recent Tweets Sentiment</h1>
+        </div>
+        <div class="chart">
+            <canvas id="myChart" width="450" height="450"></canvas>
+            <script>
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Positive Tweets", "Negative Tweets"],
+                datasets: [{
+                label: '# of Tweets',
+                data: ['{{ data[0] }}', '{{ data[1] }}'],
+                backgroundColor: [
+                    // 'rgba(75, 192, 192, 0.2)',
+                    // 'rgba(255, 99, 132, 0.2)'
+                    "#56d798",
+                    "#e36b6b"
+                ],
+                borderColor: [
+                    // 'rgba(75, 192, 192, 1)',
+                    // 'rgba(255,99,132,1)'
+                    '#4ad092',
+                    '#cc4b4b'
+                ],
+                borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                xAxes: [{
+                    ticks: {
+                    maxRotation: 90,
+                    minRotation: 80
+                    },
+                    gridLines: {
+                    offsetGridLines: true
+                    }
+                },
+                {
+                    position: "top",
+                    ticks: {
+                    maxRotation: 90,
+                    minRotation: 80
+                    },
+                    gridLines: {
+                    offsetGridLines: true
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                    beginAtZero: true
+                    }
+                }]
+                }
+            }
+            });
+            </script>
+        </div>
+        <h1 class='kw'>Keywords and Hashtags</h1>
+        <div class='kwlist'>
+            <ul id="keyword_list">
+                {% if keywords.length == 0 %}
+                <li>
+                    <span class="keyword">No Results</span>
+                </li>
+                {% endif %}
+
+                {% for kw in keywords %}
+                <li>
+                    <span class="number"><i class="fas fa-hashtag"></i></span>
+                    <span class="keyword">{{ kw }}</span>
+                    <span class="icon"><i class="fab fa-twitter"></i></span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>

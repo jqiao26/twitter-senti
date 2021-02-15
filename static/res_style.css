@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #00acee;
+    font-family: sans-serif;
+}
+
+.sentiment {
+    display: flex;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    color: #243447;
+}
+
+canvas {
+    margin: 0 auto;
+}
+
+.kw {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 80px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    color: #243447;
+}
+
+.kwlist {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 100px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    color: #243447;
+}
+
+ul {
+    position: relative;
+    width: 300px;
+    margin: 20px auto 0;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.15);
+}
+
+ul li {
+    display: flex;
+    background: #243447;
+    padding: 10px 20px;
+    color: #fff;
+    margin: 5px 0;
+    transition: 0.5s;
+}
+
+ul li span:nth-child(1) {
+    width: 30px;
+}
+
+ul li span:nth-child(2) {
+    width: 230px;
+}
+
+ul li:hover {
+    transform: scale(1.06);
+    background: #00acee;
+}
